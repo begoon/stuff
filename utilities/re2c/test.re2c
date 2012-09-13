@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+enum {
+  CMD, INT, FLOAT, SPACE, END
+};
+
+int scan(char** p, char** lex)
+{
+        char* marker;
+	if (lex) *lex = *p;
+/*!re2c
+        re2c:define:YYCTYPE  = "unsigned char";
+        re2c:define:YYCURSOR = *p;
+        re2c:define:YYMARKER = marker;
+        re2c:yyfill:enable   = 0;
+        re2c:yych:conversion = 1;
+        re2c:indent:top      = 1;
+        "GET"|"PUT"|"EXIT" { return CMD; }
+        [0-9]+             { return INT; }
+        [0-9]+ '.' [0-9]*  { return FLOAT; }
+        [ \t]+             { return SPACE; }
+        [^]                { return END; }
+*/
+}
+
+
+int main(int argc, char* argv[]) {
+  char *p, *last;
+  int token;
+  if (argc < 2) return 1;
+
+  p = argv[1];
+  while ((token = scan(&p, &last)) != END) {
+    int sz = p - last;
+    switch (token) {
+      case CMD: printf("Command: '%.*s'\n", sz, last); break;
+      case INT: printf("Number: '%.*s'\n", sz, last); break;
+      case FLOAT: printf("Float: '%.*s'\n", sz, last); break;
+    }
+  }
+
+  return 0;
+}
