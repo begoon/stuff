@@ -1,4 +1,2 @@
-stuff
-=====
-
-Various experimental sources and documents.
+Various experimental sources and documents
+==========================================
