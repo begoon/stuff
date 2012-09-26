@@ -1,0 +1,35 @@
+C:\TEMP\stas>"C:\Program Files\Java\jdk1.7.0_03\bin\java.exe" -jar java_benchmark.jar crap
+Generating file with random long array of size 50000000... generated file [trash_for_sort_0.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_0_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_1.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_1_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_2.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_2_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_3.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_3_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_4.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_4_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_5.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_5_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_6.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_6_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_7.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_7_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_8.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_8_sorted.bin]
+Generating file with random long array of size 50000000... generated file [trash_for_sort_9.bin]
+Generating sorted file for data with size 50000000... generated file [trash_for_sort_9_sorted.bin]
+
+C:\TEMP\stas>"C:\Program Files\Java\jdk1.7.0_03\bin\java.exe" -jar java_benchmark.jar
+Running test...
+Running test with long array of size 50000000... done. Test time 78ms. Verification started...  verification failed.
+Running test with long array of size 50000000... done. Test time 6181ms. Verification started...  verification failed.
+Running test with long array of size 50000000... done. Test time 3575ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3516ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3717ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3623ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3643ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3769ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3668ms. Verification started...  verification succeeded.
+Running test with long array of size 50000000... done. Test time 3638ms. Verification started...  verification succeeded.
+Avg test run [3643]ms
