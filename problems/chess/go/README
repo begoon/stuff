@@ -1,0 +1,71 @@
+Language
+--------
+Go (recent version from the development repo)
+
+hg clone -r release https://go.googlecode.com/hg/ go
+
+Approach
+--------
+Depth-first recurive search with minor local optimization.
+
+Main challenge
+--------------
+Avoid getting duplicated positions. Implemented via memoizing the last used
+position for every type of units.
+
+Running time
+------------
+Core 2 Due laptop, 4GB RAM
+
+On 7x7 test case: 4.26sec.
+
+The number of positions for this test case is: 3063828
+
+Compilation
+-----------
+GNU Make and Go compiler must be available.
+
+Unpack the archive and type 'make'.
+
+This command will compile the sources and run 4 test cases. The last one
+(7x7) only prints out the number of positions.
+
+This example of executing on my home laptop
+-------------------------------------------
+alexander@:~/projects/chess$ make
+6g chess2.go
+6l -o chess2 chess2.6
+echo TEST: test-2x2
+TEST: test-2x2
+time -p ./chess2 <test-2x2.txt >test-2x2.actual
+real 0.00
+user 0.00
+sys 0.01
+diff -u test-2x2.etalon test-2x2.actual
+echo TEST: test-3x3
+TEST: test-3x3
+time -p ./chess2 <test-3x3.txt >test-3x3.actual
+real 0.01
+user 0.01
+sys 0.00
+diff -u test-3x3.etalon test-3x3.actual
+echo TEST: test-4x4
+TEST: test-4x4
+time -p ./chess2 <test-4x4.txt >test-4x4.actual
+real 0.02
+user 0.01
+sys 0.00
+diff -u test-4x4.etalon test-4x4.actual
+echo TEST: test-7x7
+TEST: test-7x7
+time -p ./chess2 <test-7x7.txt >test-7x7.actual
+real 4.26
+user 4.20
+sys 0.01
+diff -u test-7x7.etalon test-7x7.actual
+alexander@:~/projects/chess$ cat test-7x7.actual 
+3063828
+
+---
+Alexander Demin
+21.10.2010

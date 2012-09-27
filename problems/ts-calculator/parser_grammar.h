@@ -1,0 +1,9 @@
+#define PLUS                            1
+#define MINUS                           2
+#define TIMES                           3
+#define DIVIDE                          4
+#define LPARENT                         5
+#define RPARENT                         6
+#define SYMBOL                          7
+#define COMMA                           8
+#define CONSTANT                        9
