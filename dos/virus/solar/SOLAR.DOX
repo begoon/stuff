@@ -1,0 +1,50 @@
+
+  Solar103, Solar125, Solar140 viruses ... Coded by Solar Designer \ BPC '95
+ ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+
+So, you've got a set of 3 tiny viruses. All of them are harmless, they infect
+only EXE files when they're written to disk. It's my first try of making
+viruses (and probably the last one), so don't judge it hard. Some ideas (not
+much) I took from the Genius-59 virus by ViKing that infected only COM files.
+I wonder if there're smaller TSR viruses that infect EXE files without
+destroying them...
+
+Addition table for Dr. Web:
+ษอออออออออออออออัออออัออออัออออัอออออัอออออออออออัอออออัออออออออออออออออออป
+บ      Name     ณInf.ณTSR ณEff ณ Len ณ Infected  ณInf. ณFile's len growingบ
+บ               ณway ณ    ณectsณ( L )ณ   files   ณplaceณ                  บ
+ฬอออออออออออออออุออออุออออุออออุอออออุอออออออออออุอออออุออออออออออออออออออน
+บSolar.103      ณINT ณINTBณ -  ณ 103 ณ   E       ณ  e  ณ L                บ
+บSolar.125      ณINT ณINTBณ -  ณ 125 ณ   E       ณ  e  ณ L                บ
+บSolar.140      ณINT ณINTBณ -  ณ 140 ณ   E       ณ  e  ณ L                บ
+ศอออออออออออออออฯออออฯออออฯออออฯอออออฯอออออออออออฯอออออฯออออออออออออออออออผ
+
+Common properties of all the 3 viruses:
+ + Infect only EXE files, not larger than 64Kb
+ + Correctly process overlays
+ + Don't infect already-infected files
+ + Remain resident in memory
+ - Store their code in the INT table
+ - Depend on startup registers
+ - 286+ instructions used (pusha/popa, push imm16, shl/shr)
+
+Supported only in 125 & 140:
+ + Don't infect broken EXE files (incorrect data in header)
+ = Indicate already-infected files by 'ZM' signature instead of 'MZ'
+
+Disadvantages of 125:
+ - Does not infect about 25% of files that 140 does
+ - Infects files only if the direction flag is cleared on INT 21h entry
+
+Disadvantages of 103:
+ - Does not correct file size stored in header
+ - Indicates already-infected files by invalid data in header
+ - Can occasionally damage files (fortunately they can be restored easily)
+ - Programs may sometimes show 'disk full' msgs (I didn't have such problems)
+ - Infects files only if the direction flag is cleared on INT 21h entry
+
+ ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ
+  Greetz fly 2:
+     EuGGiE \\ BfG/TN0   -- R U still coding sumthing Urself?
+     Dread Lord \\ FotD  -- Don't B like a KPOBOCOC - sucking blood sux! ;)
+     ViKing \\ BfG       -- Ur virus rulez! :)
