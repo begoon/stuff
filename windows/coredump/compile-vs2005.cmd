@@ -1,0 +1,1 @@
+call cl2005.cmd && cl /Zi main.cpp coredump.cpp dbghelp.lib
