@@ -1,0 +1,43 @@
+import os
+
+#Decider('make')
+
+sources = Split("""
+Mutex_unittest.cpp
+ListenSocket.cpp 
+ListenSocket_unittest.cpp
+ListenSocketThread.cpp
+Socket.cpp 
+Socket_unittest.cpp
+SSLSocket.cpp 
+SSLContext.cpp
+SSLListenSocket.cpp
+SSLError.cpp
+SSL_unittest.cpp
+SystemMessage.cpp
+Thread.cpp 
+Thread_unittest.cpp
+Runner.cpp
+gtest/src/gtest-all.cpp
+""")
+
+MS_VC = "C:\\Program Files\\Microsoft Visual Studio 9.0\\VC"
+VC_INC = MS_VC + "\\include"
+VC_LIB = MS_VC + "\\lib"
+
+MS_SDK = "C:\\Program Files\\Microsoft SDKs\\Windows\\v6.0"
+MS_SDK_INC = MS_SDK + "\\include"
+MS_SDK_LIB = MS_SDK + "\\lib"
+
+libs = Split("""
+openssl/lib/win32/libeay32.lib 
+openssl/lib/win32/ssleay32.lib
+wsock32.lib gdi32.lib
+""")
+
+env = Environment(CXXFLAGS = ['/Zi', '/MD', '/EHsc', '/DWIN32'])
+
+env.Program(
+	"SSL_vs2008", sources, LIBS=libs, LIBPATH=['.', VC_LIB, MS_SDK_LIB],
+	CPPPATH = [VC_INC, MS_SDK_INC, 'gtest/include', 'gtest', 'openssl/include']
+)
