@@ -1,0 +1,25 @@
+http://thekonst.net/sshole
+
+Initial release. This is just a small proggy useful for debugging
+SSL-encrypted protocols. What it does is listening on a specified port,
+then upon receiving an incoming connection it connects to the remote
+host and operates in the normal way, with the only difference that
+all the traffic is copied to the local stdout. Sshole can serve many
+connections at once.
+
+SSHole was written by me, Konst as an illustration of OpenSSL
+functionality for an article in Software2.0 magazine.
+http://www.software20.org/
+
+However, besides OpenSSL, SSHole can be built against SSLeay or GnuTLS.
+
+The command line usage can be easily found out by running the program
+with no arguments. However, there is a small issue. It requires a
+certificate in order to run. This one can be generated easily by
+running:
+
+$ openssl req -x509 -nodes -newkey rsa:1024 -keyout server.pem -out server.pem
+
+You can specify the path to the certificate explicitely by using -c
+parameter. If the parameter isn't used, the program looks for server.pem
+in the current work directory.

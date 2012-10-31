@@ -1,0 +1,41 @@
+AC_INIT(aclocal.m4)
+AM_INIT_AUTOMAKE(sshole, 0.1)
+
+AC_PROG_CC
+AC_PROG_RANLIB
+
+AC_ARG_WITH(openssl,
+    [  --with-openssl=[DIR]    use OpenSSL library in DIR (optional)],
+    [with_openssl=$withval])
+
+if test -z "$with_openssl"; then
+    for ac_dir in /usr/local /usr; do
+        if test -f "$ac_dir/include/openssl/ssl.h"; then
+    	    with_openssl=$ac_dir
+	    break;
+	fi
+    done
+fi
+
+AC_MSG_CHECKING(for OpenSSL)
+
+if test -n "$with_openssl" -a "$with_openssl" != "no"; then
+    if test "$with_openssl" = "yes"; then with_openssl="/usr"; fi
+    CFLAGS="$CFLAGS -I${with_openssl}"
+    AC_DEFINE(HAVE_OPENSSL, 1, [use openssl])
+    AC_MSG_RESULT([found in $with_openssl])
+    AC_CHECK_LIB(crypto, main)
+    AC_CHECK_LIB(ssl, main)
+else
+    AC_MSG_RESULT([not found or disabled])
+    with_ssl="no"
+
+    AM_PATH_LIBGNUTLS_EXTRA(0.0.1, [
+        CXXFLAGS="$CXXFLAGS $LIBGNUTLS_CFLAGS"
+        LIBS="$LIBS $LIBGNUTLS_LIBS -lgnutls-extra"
+        AC_DEFINE(HAVE_GNUTLS, 1, [use gnutls])
+        with_ssl="yes"
+    ])
+fi
+
+AC_OUTPUT(Makefile)
