@@ -1,0 +1,39 @@
+Light HTTP Daemon (Windows Port)
+--------------------------------
+	http://lhttpd.sourceforge.net/
+	Derived from ghttpd by Gareth Owen (gaz@athene.co.uk)
+
+NOTICE: We would very much appreciate it if you would contact us before you
+	re-distribute modified code, and include credits to us in the
+	modified code. You are requried to include credit to us in any 
+	redistribution of this code by law (under the GPL) but you are
+	not required to contact us.
+
+NEW IN VERSION 0.1:
+- This release is simply the slightly modified code
+- Lots of bug fixes. 
+- Quite a few routines replaced with faster ones.
+- The beginnings of a "scoreboard" file that stores the pid.
+
+lhttpd is a fast and efficient HTTP server that has CGI support.(no post support, only get)
+lhttpd has a small memory inprint and is capable of handling thousands of
+simultanious connections. It is ideal for large and small websites. It is
+very simple to configure with only a few options to change if changing is
+needed at all. You can have lhttpd up and running within two minutes easily
+because of its very simple configuration file and installation routine.
+ghttpd should run on the majority of UNIX systems but has been developed on
+RedHat Linux 7.0, and therefore is known to run on that platform.
+lhttpd aims to improve the somewhat "bare bones" ghttpd into a full webserver, 
+and an in-built content management system.  Using special SHTML-like tags
+named "SPLICE", you will be able to execute in-page MySQL queries, includes and 
+echo variables.
+Below is the Installation instructions and the usage instructions
+
+This is the windows port of lhttpd, and currently has no CGI support, but works...
+
+LHTTPd is installed to C:\lhttpd and there is an executable in there that should run.
+
+-------------------------------
+The LHTTPd team
+http://lhttpd.sourceforge.net/
+-------------------------------
