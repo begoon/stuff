@@ -1,0 +1,25 @@
+          Winetd - inetd for Windows.
+          by Alexander Pristenski 2007
+
+CONTACTS:
+
+  email: <rekod@users.sourceforge.net>
+    ICQ: 150211485 (preferable contact, online 11:00 - 17:00 Moscow time)
+
+  ICQ contact more preferable, so don't hesitate to contact me using ICQ :)
+  Lastest patches by Denis Golovan (<denis_golovan@mail.ru>, ICQ 105051989)
+
+CHANGE LOG:
+
+  30.01.2007  Alexander S. Pristenski - initial creation.
+  01.09.2007  Alexander S. Pristenski - feature: setup of network interface to listen on added.
+  20.12.2007  Alexander S. Pristenski - ability to completely disable log (AT COMPILE TIME) added.
+  29.04.2008  Denis Golovan - external exception log in working threads (now does not die silently on AVs),
+                              foreground mode, detailed debug mode, version show :), 
+                              commandline help and config file path, some tests
+  01.04.2008  Denis Golovan - 1.0.3 version (too fast :), see below )
+  25.05.2008  Denis Golovan - 1.0.3 version postponed due to some bugs,
+                              several stability fixes,
+                              temporary LOG_TO_FILE is disabled
+  28.06.2008  Denis Golovan - 1.0.3. At last :)                            
+-eof-

@@ -1,0 +1,43 @@
+          Winetd - inetd for Windows.
+          by Alexander Pristenski 2007
+
+CONTACTS:
+
+  email: <rekod@users.sourceforge.net>
+    ICQ: 150211485 (preferable contact, online 11:00 - 17:00 Moscow time)
+
+  ICQ contact more preferable, so don't hesitate to contact me using ICQ :)
+  Lastest patches by Denis Golovan (<denis_golovan@mail.ru>, ICQ 105051989)
+
+FAQ:
+
+Q:  When I run any .bat file or cmd.exe itself under Winetd, I see an echo of commands! :(
+
+A:  It's well known non-Winetd bug, but a bug of cmd.exe and some other windows utils.
+
+  Winetd is just a "middleware" and by its current self design it CAN NOT add/remove
+  anything to/from the stream.
+
+  In the \test\echo dir there is a sample echo server (includes source) that aimed to show
+  how to write server applications to run under Winetd.
+
+  Its source is really quite simple:
+
+  #include <stdio.h>
+
+  int main(int argc, char* argv[])
+  {
+    char ch;
+    int  res;
+
+    for(;;)
+    {
+      res = scanf("%c", &ch);
+      if((res == 0) || (res == EOF)) break;
+      printf("%c", ch);
+    }
+
+    return 0;
+  }
+
+-eof-
