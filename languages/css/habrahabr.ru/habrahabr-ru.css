@@ -1,0 +1,19 @@
+#topline {
+    display: none;
+}
+#header .logo {
+    background: none;
+    height: 30px;
+}
+#header .main_menu .banner_special {
+    display: none;
+}
+.sidebar_right {
+    display: none;
+}
+.content_left {
+    width: 99%;
+}
+.rotated_posts {
+    display: none;
+}
