@@ -1,9 +1,62 @@
 # include <iostream>
-# include <windows.h>
 # include <time.h>
+#ifdef WINDOWS
+# include <windows.h>
 // библиотека, нужна для использования функции Sleep()
 # include <conio.h>
 // библиотека, нужна для использования функций kbhit() и getch()
+#else
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <termios.h>
+#include <sys/select.h>
+
+#define STDIN_FILENO 0
+#define NB_DISABLE 0
+#define NB_ENABLE 1
+
+#define Sleep(x) usleep(x*1000)
+
+int kbhit() {
+    struct timeval tv;
+    fd_set fds;
+    tv.tv_sec = 0;
+    tv.tv_usec = 0;
+    FD_ZERO(&fds);
+    FD_SET(STDIN_FILENO, &fds); //STDIN_FILENO is 0
+    select(STDIN_FILENO+1, &fds, NULL, NULL, &tv);
+    return FD_ISSET(STDIN_FILENO, &fds);
+}
+
+void nonblock(int state) {
+    struct termios ttystate;
+ 
+    //get the terminal state
+    tcgetattr(STDIN_FILENO, &ttystate);
+ 
+    if (state==NB_ENABLE)
+    {
+        //turn off canonical mode
+        ttystate.c_lflag &= ~ICANON;
+        //minimum of number input read.
+        ttystate.c_cc[VMIN] = 1;
+    }
+    else if (state==NB_DISABLE)
+    {
+        //turn on canonical mode
+        ttystate.c_lflag |= ICANON;
+    }
+    //set the terminal attributes.
+    tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
+ 
+}
+
+int getch() {
+  return fgetc(stdin);
+}
+
+#endif
 using namespace std;
 const char* main_color[] = {"color 01","color 02","color 03","color 04","color 05",
 "color 06","color 07","color 08","color 09","color 0A","color 0B","color 0C","color 0D",
@@ -76,6 +129,9 @@ void change_direction()
          case 'a': if(change_x != 0 || change_y != 1) { change_x = 0; change_y = -1; } break;
          case 's': if(change_x != -1 || change_y != 0) { change_x = 1; change_y = 0; } break;
          case 'd': if(change_x != 0 || change_y != -1) { change_x = 0; change_y = 1; } break;
+#ifndef WINDOWS
+         case 'q': nonblock(NB_DISABLE); exit(0);
+#endif
          // управление змейкой у нас через wasd 
          case 32 : change_color(); break;
          // если нажат пробел, то меняем цвет консоли
@@ -85,7 +141,12 @@ void change_direction()
 void show_table()
 // функция для вывода таблицы
 {
+#ifdef WINDOWS
     system("cls");
+#else
+    system("clear");
+#endif
+
     // очищаем консоль
     for (int i = 0; i <= N + 1; ++i)
      for (int j = 0; j <= M + 1; ++j)
@@ -222,6 +283,11 @@ int main ()
     standart_settings();
     // задаем стандартные настройки
  
+#ifndef WINDOWS
+    memset(a, ' ', sizeof(a));
+    nonblock(NB_ENABLE);
+#endif
+
     while (1)
     // бесконечный цикл
     {
