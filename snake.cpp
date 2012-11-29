@@ -1,3 +1,5 @@
+// Originally taken from http://itblogs.org/c-konsolnaya-zmejka/.
+
 # include <iostream>
 # include <time.h>
 #ifdef WINDOWS
