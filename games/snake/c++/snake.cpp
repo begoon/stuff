@@ -55,48 +55,6 @@ int getch() {
 }
 
 #endif
-// Этот массив содержит в себе все возможные консольные цвета.
-const char* main_color[] = {
-"color 01", "color 02", "color 03", "color 04", "color 05", "color 06",
-"color 07", "color 08", "color 09", "color 0A", "color 0B", "color 0C",
-"color 0D", "color 0E", "color 0F", "color 10", "color 12", "color 13",
-"color 14", "color 15", "color 16", "color 17", "color 18", "color 19",
-"color 1A", "color 1B", "color 1C", "color 1D", "color 1E", "color 1F",
-"color 20", "color 21", "color 23", "color 24", "color 25", "color 26",
-"color 27", "color 28", "color 29", "color 2A", "color 2B", "color 2C",
-"color 2D", "color 2E", "color 2F", "color 30", "color 31", "color 32",
-"color 34", "color 35", "color 36", "color 37", "color 38", "color 39",
-"color 3A", "color 3B", "color 3C", "color 3D", "color 3E", "color 3F",
-"color 40", "color 41", "color 42", "color 43", "color 45", "color 46",
-"color 47", "color 48", "color 49", "color 4A", "color 4B", "color 4C",
-"color 4D", "color 4E", "color 4F", "color 50", "color 51", "color 52",
-"color 53", "color 54", "color 56", "color 57", "color 58", "color 59",
-"color 5A", "color 5B", "color 5C", "color 5D", "color 5E", "color 5F",
-"color 60", "color 61", "color 62", "color 63", "color 64", "color 65",
-"color 67", "color 68", "color 69", "color 6A", "color 6B", "color 6C",
-"color 6D", "color 6E", "color 6F", "color 70", "color 71", "color 72",
-"color 73", "color 74", "color 75", "color 76", "color 78", "color 79",
-"color 7A", "color 7B", "color 7C", "color 7D", "color 7E", "color 7F",
-"color 80", "color 81", "color 82", "color 83", "color 84", "color 85",
-"color 86", "color 87", "color 89", "color 8A", "color 8B", "color 8C",
-"color 8D", "color 8E", "color 8F", "color 90", "color 91", "color 92",
-"color 93", "color 94", "color 95", "color 96", "color 97", "color 98",
-"color 9A", "color 9B", "color 9C", "color 9D", "color 9E", "color 9F",
-"color A0", "color A1", "color A2", "color A3", "color A4", "color A5",
-"color A6", "color A7", "color A8", "color A9", "color AB", "color AC",
-"color AD", "color AE", "color AF", "color B0", "color B1", "color B2",
-"color B3", "color B4", "color B5", "color B6", "color B7", "color B8",
-"color B9", "color BA", "color BC", "color BD", "color BE", "color BF",
-"color C0", "color C1", "color C2", "color C3", "color C4", "color C5",
-"color C6", "color C7", "color C8", "color C9", "color CA", "color CB",
-"color CD", "color CE", "color CF", "color D0", "color D1", "color D2",
-"color D3", "color D4", "color D5", "color D6", "color D7", "color D8",
-"color D9", "color DA", "color DB", "color DC", "color DE", "color DF",
-"color E0", "color E1", "color E2", "color E3", "color E4", "color E5",
-"color E6", "color E7", "color E8", "color E9", "color EA", "color EB",
-"color EC", "color ED", "color EF", "color F0", "color F1", "color F2",
-"color F3", "color F4", "color F5", "color F6", "color F7", "color F8",
-"color F9", "color FA", "color FB", "color FC", "color FD", "color FE"};
 
 // snake_size - размер змейки.
 // change_x, change_y - в какую сторону движется змейка.
@@ -118,14 +76,6 @@ char symbol, a[1000][1000];
 // INTERVAL - интервал в миллисекундах, через каждый этот промежуток
 //            времени змейка будет передвигаться.
 const int N = 13, M = 17, INTERVAL = 200;
-
-// функция изменения цвета консоли.
-void change_color() {
-  // Выбираем рандомный цвет.
-  const int x = std::rand() % 240;
-  // Меняем цвет.
-  system(main_color[x]);
-}
 
 // функция, считывающая нажатую клавишу.
 void change_direction() {
@@ -151,10 +101,6 @@ void change_direction() {
               break;
 #ifndef WINDOWS
     case 'q': nonblock(NB_DISABLE); std::exit(0);
-#endif
-#ifdef WINDOWS
-    // Если нажат пробел, то меняем цвет консоли.
-    case 32: change_color(); break;
 #endif
     default: break;
   }
