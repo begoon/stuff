@@ -1,0 +1,43 @@
+#wrapper {
+  background: none;
+}
+
+#logo {
+  display: none;
+}
+
+.ad-wrap {
+  display: none;
+}
+
+#wrapper {
+  background: none;
+}
+
+#logo {
+  display: none;
+}
+
+.ad-wrap {
+  display: none;
+}
+
+.button-submit-small.ask-question input, .button-submit-small.ask-question a, .button-submit-large.ask-question input, .button-submit-large.ask-question a {
+  display: block;
+}
+
+.button-submit-large input, .button-submit-large .inner, .button-submit-small input, .button-submit-small .inner {
+  color: #000000;
+  background: #FFFFFF
+}
+
+.button-submit-large input, .button-submit-large .inner, .button-submit-small input, .button-submit-small .inner, .button-cancel-large .inner, .button-cancel-small .inner, .button-cancel-small input {
+}
+
+#main-header {
+  display: none;
+}
+
+.logo-wrap {
+  display: none;
+}
