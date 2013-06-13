@@ -49,3 +49,7 @@ body {
 .thumb {
   display: none;
 }
+
+#content {
+  width: 99%;
+}
