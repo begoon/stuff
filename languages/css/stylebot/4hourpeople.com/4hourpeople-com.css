@@ -41,3 +41,7 @@
 .logo-wrap {
   display: none;
 }
+
+body {
+  background: none;
+}
