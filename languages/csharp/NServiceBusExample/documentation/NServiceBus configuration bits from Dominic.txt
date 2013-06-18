@@ -1,0 +1,53 @@
+NServiceBus example project
+===========================
+
+Comments from Dominic
+---------------------
+
+install-package NServiceBus
+
+Install-RavenDB
+
+Install-PerformanceCounters
+
+install-package NServiceBus.Host
+
+
+[09:36:29] Dominic Crossley:
+
+            NServiceBus.SetLoggingLibrary.Log4Net();
+
+            IBus bus = Configure.With()
+                .DefaultBuilder()
+                .Log4Net()
+                .MsmqTransport()
+                .IsTransactional(true)
+                .PurgeOnStartup(true)
+                .UnicastBus()
+                .ImpersonateSender(false)
+                .LoadMessageHandlers()
+                .SendOnly();
+
+[09:36:36] Dominic Crossley:
+
+<?xml version="1.0"?>
+<configuration>
+  <configSections>
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core" />
+    <section name="MsmqTransportConfig" type="NServiceBus.Config.MsmqTransportConfig, NServiceBus.Core" />
+  </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0.3"/>
+    </startup>
+  
+  <MsmqTransportConfig
+    ErrorQueue="NServiceBusExample.OrderService.error"
+    NumberOfWorkerThreads="1"
+    MaxRetries="5"
+  />
+  <UnicastBusConfig>
+    <MessageEndpointMappings>
+      <add Messages="NServiceBusExample.OrderService.Contracts" Endpoint="NServiceBusExample.OrderService"/>
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+</configuration>
