@@ -40,7 +40,7 @@ p {
 }
 
 .search-accords .search-accords-text {
-    background: none; 
+    background: none;
 }
 
 #accords_title {
@@ -83,3 +83,24 @@ noindex {
     display: none;
 }
 
+#banners {
+    display: none;
+}
+
+h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: none;
+}
+
+.orange {
+    display: none;
+}
+
+#accords_tone .paging {
+    margin-bottom: 0px;
+}
+
+.search-accords-text {
+    display: none;
+}
