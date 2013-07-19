@@ -13,3 +13,73 @@
 p {
     display: none;
 }
+
+#container {
+    display: none;
+}
+
+#search, #search a {
+    font-size: 1em;
+}
+
+#search {
+    margin-top: 0px;
+    padding: 0px;
+    background: none;
+    height: 0px;
+}
+
+.clearFloat {
+    display: none;
+}
+
+#search .search-accords {
+    height: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.search-accords .search-accords-text {
+    background: none; 
+}
+
+#accords_title {
+    display: none;
+}
+
+#mediaplayer_wrapper {
+    display: none;
+}
+
+#vk_like {
+    display: none;
+}
+
+#vk_comments {
+    display: none;
+}
+
+noindex {
+    display: none;
+}
+
+.lenta {
+    display: none;
+}
+
+.frame .songs-author {
+    display: none;
+}
+
+#footer {
+    display: none;
+}
+
+.footer-line-3 {
+    display: none;
+}
+
+.accords_right-td-top {
+    display: none;
+}
+
