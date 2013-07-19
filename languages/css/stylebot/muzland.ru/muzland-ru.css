@@ -83,24 +83,46 @@ noindex {
     display: none;
 }
 
-#banners {
+#frame1 {
     display: none;
 }
 
-h2 {
-    margin-top: 0px;
-    margin-bottom: 0px;
+#frame2 {
     display: none;
 }
 
-.orange {
+#frame3 {
     display: none;
 }
 
-#accords_tone .paging {
-    margin-bottom: 0px;
+#frame4 {
+    display: none;
 }
 
-.search-accords-text {
+.news {
+    display: none;
+}
+
+.index_column {
+    display: none;
+}
+
+#guitar_bg_left {
+    background: none; 
+}
+
+#index_guitar {
+    background: none;
+}
+
+.lenta_orange {
+    display: none;
+}
+
+.new {
+    display: none;
+}
+
+.new2 {
     display: none;
 }
