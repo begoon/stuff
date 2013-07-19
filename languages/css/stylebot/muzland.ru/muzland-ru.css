@@ -134,3 +134,19 @@ noindex {
 .frame .artist {
     display: none;
 }
+
+h2 {
+    display: none;
+}
+
+.search-accords-text {
+    display: none;
+}
+
+.orange {
+    display: none;
+}
+
+.accords_right {
+    display: none;
+}
