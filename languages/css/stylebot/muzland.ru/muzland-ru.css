@@ -10,8 +10,12 @@
     display: none;
 }
 
-p {
+p .first {
     display: none;
+}
+
+.first {
+    display: block;
 }
 
 #container {
@@ -108,7 +112,7 @@ noindex {
 }
 
 #guitar_bg_left {
-    background: none; 
+    background: none;
 }
 
 #index_guitar {
@@ -126,3 +130,4 @@ noindex {
 .new2 {
     display: none;
 }
+
