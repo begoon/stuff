@@ -13,7 +13,7 @@ function Draw-Field {
   $script:map | ForEach { 
     Write-Host "|" -NoNewline
     Write-Host $_ -NoNewline
-	  Write-Host "|"
+    Write-Host "|"
   }
   $line = "+" + "".PadRight($width, "-") + "+" | Write-Host
 }
@@ -25,7 +25,7 @@ function String-Put($s, $i, $c) {
 }
 
 function Map-Put($x, $y, $c = " ") {
-  $script:map[$y] = String-Put ($script:map[$y]) $x $c 
+  $script:map[$y] = String-Put ($script:map[$y]) $x $c
 }
 
 function Clear-Snake {
@@ -36,14 +36,14 @@ function Draw-Snake($dx, $dy) {
   $first = $true
   $script:snake | ForEach { 
     $c = "@"
-	  if ($first) {
-	    if ($dx -eq 1 -and $dy -eq 0) { $c = ">" }
-	    elseif ($dx -eq -1 -and $dy -eq  0) { $c = "<" }
-	    elseif ($dx -eq  0 -and $dy -eq +1) { $c = "V" }
-	    elseif ($dx -eq  0 -and $dy -eq -1) { $c = "^" }
+    if ($first) {
+      if ($dx -eq 1 -and $dy -eq 0) { $c = ">" }
+      elseif ($dx -eq -1 -and $dy -eq  0) { $c = "<" }
+      elseif ($dx -eq  0 -and $dy -eq +1) { $c = "V" }
+      elseif ($dx -eq  0 -and $dy -eq -1) { $c = "^" }
       $first = $false
-	  }
-	  Map-Put $_[0] $_[1] $c
+    }
+    Map-Put $_[0] $_[1] $c
   }
 }
 
@@ -51,10 +51,10 @@ function Place-Rabbit {
   while ($true) {
     $x = Get-Random -Minimum 0 -Maximum ($script:width-1)
     $y = Get-Random -Minimum 0 -Maximum ($script:height-1)
-	  if ($script:map[$y][$x] -eq " ") { 
-	    Map-Put $x $y "+"
-	    return @($x, $y)
-	  }
+    if ($script:map[$y][$x] -eq " ") { 
+      Map-Put $x $y "+"
+      return @($x, $y)
+    }
   }
 }
 
@@ -76,7 +76,7 @@ function Move-Snake($dx, $dy) {
 
   if (Is-Hit-Snake $x $y) {
      Write-Host "Bang!"
-	   Exit
+     Exit
   }
   
   $script:snake.Insert(0, @($x, $y))
@@ -88,9 +88,9 @@ function Move-Snake($dx, $dy) {
   }
 
   if ($x -eq $script:rabbit[0] -and $y -eq $script:rabbit[1]) {
-	  $script:growth = $script:increase
-	  $script:increase *= 2
-	  $script:rabbit = Place-Rabbit
+    $script:growth = $script:increase
+    $script:increase *= 2
+    $script:rabbit = Place-Rabbit
   }
   
   Draw-Snake $dx $dy
@@ -112,7 +112,7 @@ function Game {
     Move-Snake $dx $dy
     Draw-Snake $dx $dy
     Draw-Field
-	  Start-Sleep -Milliseconds 100
+    Start-Sleep -Milliseconds 100
   } while ($key -ne 'q')
 }
 
