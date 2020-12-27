@@ -7,7 +7,7 @@
     (if (null? thread-list)
       #t
       (let (
-        (continuation (call/cc (lambda (c) c))) )
+          (continuation (call/cc (lambda (c) c))) )
         (if (procedure? continuation)
           (let* (
               (next-thread (car thread-list))
