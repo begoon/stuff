@@ -1,69 +1,82 @@
 ;; https://www.youtube.com/watch?v=Ju3KKu_mthg
 
+(define logging #t)
+
+(define debug 
+  (lambda (msg) 
+    (if logging (display msg) '()) ) )
+
 (define thread-list `())
 
 (define thread-yield
   (lambda ()
-    (if (null? thread-list)
-      #t
-      (let (
-          (continuation (call/cc (lambda (c) c))) )
-        (if (procedure? continuation)
-          (let* (
-              (next-thread (car thread-list))
-              (other-threads (cdr thread-list)) 
-              (new-thread-list
-                (append other-threads (list continuation)) )
+    (begin
+      (debug "- yield\n")
+      (if (null? thread-list)
+        #t
+        (let (
+            (continuation (call/cc (lambda (c) c))) )
+          (if (procedure? continuation)
+            (let* (
+                (next-thread (car thread-list))
+                (other-threads (cdr thread-list)) 
+                (new-thread-list
+                  (append other-threads (list continuation)) )
+              )
+              (set! thread-list new-thread-list)
+              (debug "- switch to another fiber (yield)\n")
+              (next-thread 'go)
             )
-            (set! thread-list new-thread-list)
-            (next-thread 'go)
-          )
-          #t ) ) ) ) )
+            (begin (debug "continuation (yield) is called\n") #t) ) ) ) ) ) )
 
 (define thread-end
   (lambda ()
     (if (null? thread-list)
-      (display "exit\n")
+      (debug "exit\n")
       (let* (
           (next-thread (car thread-list))
           (other-threads (cdr thread-list)) 
         )
         (set! thread-list other-threads)
+        (debug "- switch to another fiber (end)\n")
         (next-thread 'go) ) ) ) )
 
 (define thread-new
   (lambda (thread-proc)
     (let (
-        (continuation (call/cc (lambda (c) c) ) ) )
+        (continuation (call/cc (lambda (c) 
+          (begin 
+            (debug "- continuation is created\n") c) ) ) ) )
       (if (procedure? continuation)
         (begin 
+          (debug "- continuation is added to threads\n")
           (set! thread-list (
             append thread-list (list continuation)) )
           (thread-proc)
           (thread-end)
         )
-        #t ) ) ) )
+        (begin (debug "continuation (new) is called\n") #t) ) ) ) )
 
-(define t1-proc
-  (lambda ()
-    (display "I'm am 1\n")
+(define worker
+  (lambda (n) 
+    (display(format "I'm am ~s\n" n))
     (thread-yield)
-    (display "I'm an 1 again\n") ) )
-  
-(define t2-proc
-  (lambda ()
-    (display "I'm am 2\n")
-    (thread-yield)
-    (display "I'm an 2 again\n") ) )
+    (display(format "I'm an ~s again\n" n)) 
+    (thread-yield) ) )
 
-(define t3-proc
-  (lambda ()
-    (display "I'm am 3\n")
-    (thread-yield)
-    (display "I'm an 3 again\n") ) )
+(define launch 
+  (lambda (n)
+    (if (= 0 n) 
+      ()
+      (begin         
+        (debug (format "- creating worker ~s\n" n))
+        (thread-new (lambda () (worker n) ))
+        (launch (- n 1))
+      )
+    ) 
+  )
+)
 
-(thread-new t1-proc)
-(thread-new t2-proc)
-(thread-new t3-proc)
+(launch 5)
 
 (thread-end)
