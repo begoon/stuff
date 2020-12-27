@@ -1,24 +1,22 @@
 ;; https://repl.it/@begoon/callcc
 
 (let (
-  (value (call/cc
-    (lambda (the-continuation) 
+  (continuation (call/cc
+    (lambda (c) 
       (display "this should be printed\n")
-      (the-continuation 100)
+      (c 100)
       (display "this should NOT be printed\n")))))
-  (display (format "value=~s\n" value))
+  (display (format "continuation=~s\n" continuation))
 
 (display "\n")
 
 (let (
-  (value (call/cc
-      (lambda (the-continuation) 
-        the-continuation))))
-  (if (procedure? value)
+  (continuation (call/cc (lambda (c) c))))
+  (if (procedure? continuation)
     (begin 
       (display (format "1. continuation~%"))
-      (value "value is now a string"))
+      (continuation "continuation is now a string"))
     (begin 
-      (display (format "2. NOT continuation\nvalue=~s\n" value))
+      (display (format "2. NOT continuation\nvalue=~s\n" continuation))
   )
 )
