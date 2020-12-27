@@ -13,7 +13,7 @@ family(F, M, [C|T]) :-
     couple(F, M),
     parent(F, C),
     parent(M, C),
-	family(F, M, T).
+    family(F, M, T).
 
 child(C) :-
     parent(_, C).
