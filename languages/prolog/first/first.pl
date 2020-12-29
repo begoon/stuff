@@ -1,10 +1,12 @@
+% https://rextester.com/l/prolog_online_compiler
+
 parent(alexander, tessa).
 parent(alexander, danyil).
 parent(olga, tessa).
 parent(olga, danyil).
 
-sibling(A, B) :- \+(A = B), parent(Z, A), parent(Z, B).
-couple(A, B) :- \+(A = B), parent(A, Z), parent(B, Z).
+sibling(A, B) :- parent(Z, A), parent(Z, B), \+(A = B).
+couple(A, B) :- parent(A, Z), parent(B, Z), \+(A = B).
 
 family(F, M, []) :-
     couple(F, M).
@@ -17,9 +19,20 @@ family(F, M, [C|T]) :-
 
 child(C) :-
     parent(_, C).
+    
+q1 :- 
+    family(alexander, olga, [tessa, danyil]),
+    write('family1'), nl,
+    family(olga, alexander, [tessa, danyil]),
+    write('family2'), nl.
 
-children([]).
+q2 :- 
+    family(A, olga, [tessa, danyil]),
+    write([A]), nl.
 
-children([H|T]) :-
-    child(H),
-    children(T).
+q3 :- 
+    family(A, olga, [B, C]),
+    write([A, B, C]), nl.
+
+
+:- q1, q2, q3.
