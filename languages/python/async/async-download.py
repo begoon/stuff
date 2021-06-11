@@ -3,16 +3,15 @@ import random
 
 
 async def download_file(file: str) -> bool:
-    status = random.random() < 0.1
+    status = random.random() < 0.3
     print(f"downloading {file} {'successful' if status else 'failed'}")
+    await asyncio.sleep(0.01)
     return status
 
 
 async def download_file_with_retry(file: str):
-    while True:
-        if await download_file(file):
-            return
-        await asyncio.sleep(0.01)
+    while not await download_file(file):
+        pass
 
 
 async def main(files):
